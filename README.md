@@ -47,14 +47,23 @@ for i = #selectedActions, 1, -1 do if selectedActions[i].pos <= 50 then script:m
 for i, action in ipairs(selectedActions) do if action.pos == 90 and i < #selectedActions and (selectedActions[i + 1].at - action.at) >= 0.13 then table.insert(script.actions, Action.new(action.at + 0.06702, 80, false)); end; end;
 ```
 
-## Available Variables
+## Available Functions & Variables
 
-- `selectedActions`: Array of currently selected actions
-- `script`: Active funscript object
-- `Action`: Constructor for creating new actions
-- `getActionIndex()`: Helper function to find action index
-- `addAction()`: Helper function to add new actions
-- `print()`: Output to extension result area
+### OFS Official API
+- `script`: Active funscript object (from `ofs.Script(ofs.ActiveIdx())`)
+- `Action.new(at, pos, selected)`: Constructor for creating new actions
+- `script:selectedIndices()`: Get array of selected action indices
+- `script:markForRemoval(idx)`: Mark action for removal
+- `script:removeMarked()`: Remove all marked actions
+- `script:sort()`: Sort actions by time
+- `script:commit()`: Apply changes to OFS
+- Standard Lua libraries: `math`, `table`, `string`, `pairs`, `ipairs`, etc.
+
+### Extension Helper Functions
+- `selectedActions`: Pre-built array of currently selected actions
+- `getActionIndex(targetAction)`: Find the index of a specific action
+- `addAction(at, pos, selected)`: Convenient wrapper for creating and adding actions
+- `print(...)`: Output text to extension result area (overrides standard print)
 
 ## API Reference
 
